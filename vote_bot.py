@@ -22,11 +22,14 @@ async def on_ready():
 @bot.command()
 async def start_vote(ctx, *options):
     # Split the options using commas
+    await ctx.send("What will be the title for the poll?")
     question_input = await bot.wait_for('message')
 
+    await ctx.send("Type in all of the options (Seperate each with a comma)")
     options_input = await bot.wait_for('message')
 
     question = question_input.content
+    question.replace(" ", "")
     options = options_input.content.split(',')
 
     # Create a poll
